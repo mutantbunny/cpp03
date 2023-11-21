@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:26:37 by gmachado          #+#    #+#             */
-/*   Updated: 2023/11/15 02:39:54 by gmachado         ###   ########.fr       */
+/*   Updated: 2023/11/21 01:29:30 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 class ClapTrap
 {
 	private:
-		std::string _name;
-		unsigned int _hp;
-		unsigned int _ep;
-		unsigned int _damage;
+		std::string m_name;
+		unsigned int m_hp;
+		unsigned int m_ep;
+		unsigned int m_damage;
 	public:
 		ClapTrap(void);
 		ClapTrap(std::string name);
