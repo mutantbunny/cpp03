@@ -6,11 +6,11 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:26:43 by gmachado          #+#    #+#             */
-/*   Updated: 2023/11/21 04:12:34 by gmachado         ###   ########.fr       */
+/*   Updated: 2023/11/21 04:08:22 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 static void fight_one_round(ClapTrap &fighter, std::string target,
 	int round, int damage)
@@ -23,7 +23,18 @@ static void fight_one_round(ClapTrap &fighter, std::string target,
 	std::cout << "Status: " << fighter << "\n---------\n" << std::endl;
 }
 
-static void fight_ten_rounds(ScavTrap &fighter, std::string target,
+static void fight_one_round(FragTrap &fighter, std::string target,
+	int round, int damage)
+{
+	std::cout << "\n---------\n";
+	std::cout << "Round " << round << ": Fight!\n";
+	fighter.attack(target);
+	fighter.takeDamage(damage);
+	fighter.beRepaired(1);
+	std::cout << "Status: " << fighter << "\n---------\n" << std::endl;
+}
+
+static void fight_ten_rounds(FragTrap &fighter, std::string target,
 	int round, int damage)
 {
 	std::cout << "\n---------\n";
@@ -65,38 +76,40 @@ int main(void)
 
 	fight_one_round(rick, "Jack", round, 4);
 
-	std::cout << "Create ScavTrap Bob:\n";
-	ScavTrap bob("Bob");
-	std::cout << bob << '\n' << std::endl;
+	std::cout << "Create FragTrap Ivan:\n";
+	FragTrap ivan("Ivan");
+	std::cout << ivan << '\n' << std::endl;
 
-	std::cout << "Fight Chuck (deals 1 HP damage per round):\n";
+	std::cout << "Fight Peter (deals 1 HP damage per round):\n";
 
 	round = 1;
 
-	while (bob.get_ep() > 0 && bob.get_hp() > 0)
+	while (ivan.get_ep() > 0 && ivan.get_hp() > 0)
 	{
-		fight_ten_rounds(bob, "Chuck", round, 1);
+		fight_ten_rounds(ivan, "Peter", round, 1);
 		round += 10;
 	}
 
-	std::cout << "---------\n";
-	bob.guardGate();
+	fight_one_round(ivan, "Peter", round, 1);
+
+	std::cout << "\n---------\n";
+	ivan.highFivesGuys();
 	std::cout << "---------\n\n";
 
-	std::cout << "Create ScavTrap Robin:\n";
-	ScavTrap robin("Robin");
-	std::cout << robin << '\n' << std::endl;
+	std::cout << "Create FragTrap Pedro:\n";
+	FragTrap pedro("Pedro");
+	std::cout << pedro << '\n' << std::endl;
 
-	std::cout << "Fight Conan (deals 10 HP damage per round):\n";
+	std::cout << "Fight Mario (deals 10 HP damage per round):\n";
 
 	round = 1;
-	while (robin.get_ep() > 0 && robin.get_hp() > 0)
+	while (pedro.get_ep() > 0 && pedro.get_hp() > 0)
 	{
-		fight_ten_rounds(robin, "Conan", round, 10);
+		fight_ten_rounds(pedro, "Mario", round, 10);
 		round += 10;
 	}
 
-	std::cout << "---------\n";
-	robin.guardGate();
+	std::cout << "\n---------\n";
+	pedro.highFivesGuys();
 	std::cout << "---------\n\n";
 }

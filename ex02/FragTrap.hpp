@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 04:17:31 by gmachado          #+#    #+#             */
-/*   Updated: 2023/11/21 02:47:11 by gmachado         ###   ########.fr       */
+/*   Updated: 2023/11/21 02:49:54 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
 # include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class FragTrap : public ClapTrap
 {
 	protected:
 		static const unsigned int default_hp = 100;
-		static const unsigned int default_ep = 50;
-		static const unsigned int default_damage = 20;
+		static const unsigned int default_ep = 100;
+		static const unsigned int default_damage = 30;
 
 	public:
-		ScavTrap(void);
-		ScavTrap(std::string name);
-		ScavTrap(ScavTrap &src);
+		FragTrap(void);
+		FragTrap(std::string name);
+		FragTrap(FragTrap &src);
 
-		~ScavTrap(void);
+		~FragTrap(void);
 
-		ScavTrap &operator=(ScavTrap &src);
+		FragTrap &operator=(FragTrap &src);
 
-		void guardGate();
+		void highFivesGuys(void);
 };
 
-std::ostream &operator<<(std::ostream &out, ScavTrap &st);
+std::ostream &operator<<(std::ostream &out, FragTrap &st);
 
 #endif
