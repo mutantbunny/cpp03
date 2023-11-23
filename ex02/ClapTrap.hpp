@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:26:37 by gmachado          #+#    #+#             */
-/*   Updated: 2023/11/21 01:29:30 by gmachado         ###   ########.fr       */
+/*   Updated: 2023/11/23 03:26:28 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,16 @@
 class ClapTrap
 {
 	protected:
+		static const unsigned int default_hp = 10;
+		static const unsigned int default_ep = 10;
+		static const unsigned int default_damage = 0;
+
 		std::string m_name;
 		unsigned int m_hp;
 		unsigned int m_ep;
 		unsigned int m_damage;
+
+		const unsigned int m_default_hp;
 
 		ClapTrap(std::string name, int hp, int ep, int damage);
 

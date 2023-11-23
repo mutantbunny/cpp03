@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 04:17:31 by gmachado          #+#    #+#             */
-/*   Updated: 2023/11/23 03:32:06 by gmachado         ###   ########.fr       */
+/*   Updated: 2023/11/23 03:35:39 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
 	protected:
 		static const unsigned int default_hp = 100;

@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:26:40 by gmachado          #+#    #+#             */
-/*   Updated: 2023/11/23 04:25:20 by gmachado         ###   ########.fr       */
+/*   Updated: 2023/11/23 04:27:28 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 	if (amount > m_hp)
 		amount = m_hp;
-
 	std::cout << "ClapTrap " << m_name << " takes " << amount
 		<< " points of damage!" << std::endl;
 	m_hp -= amount;
