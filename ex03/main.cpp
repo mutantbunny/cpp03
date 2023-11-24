@@ -6,121 +6,324 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:26:43 by gmachado          #+#    #+#             */
-/*   Updated: 2023/11/22 18:46:15 by gmachado         ###   ########.fr       */
+/*   Updated: 2023/11/24 01:09:33 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
-// static void fight_one_round(ClapTrap &fighter, std::string target,
-// 	int round, int damage)
-// {
-// 	std::cout << "\n---------\n";
-// 	std::cout << "Round " << round << ": Fight!\n";
-// 	fighter.attack(target);
-// 	fighter.takeDamage(damage);
-// 	fighter.beRepaired(1);
-// 	std::cout << "Status: " << fighter << "\n---------\n" << std::endl;
-// }
-
-// static void fight_one_round(FragTrap &fighter, std::string target,
-// 	int round, int damage)
-// {
-// 	std::cout << "\n---------\n";
-// 	std::cout << "Round " << round << ": Fight!\n";
-// 	fighter.attack(target);
-// 	fighter.takeDamage(damage);
-// 	fighter.beRepaired(1);
-// 	std::cout << "Status: " << fighter << "\n---------\n" << std::endl;
-// }
-
-// static void fight_ten_rounds(FragTrap &fighter, std::string target,
-// 	int round, int damage)
-// {
-// 	std::cout << "\n---------\n";
-// 	std::cout << "Round " << round << ": Fight!\n";
-// 	for (int i = 10; i > 0; --i)
-// 	{
-// 		fighter.attack(target);
-// 		fighter.takeDamage(damage);
-// 		fighter.beRepaired(1);
-// 	}
-
-// 	std::cout << "Status: " << fighter << "\n---------\n" << std::endl;
-// }
-
-int main()
+int main(void)
 {
-	std::cout << "### TESTING CLAPTRAP ###\n" << std::endl;
 	{
-		std::cout << "\033[34mConstructing\033[0m" << std::endl;
-		ClapTrap a;
-		ClapTrap b("Cody");
+		std::cout << "Test ClapTrap class:\n\n";
 
-		std::cout << "\033[34mTesting\033[0m" << std::endl;
-		a.attack("some other robot");
-		a.takeDamage(10);
-		a.takeDamage(10);
-		a.beRepaired(5);
-		a.attack("some other other robot");
-		b.beRepaired(3);
-		for (int i = 0; i < 12; i++)
-			b.attack("Cody-clone");
-		b.beRepaired(3);
-		std::cout << "\033[34mDeconstructing\033[0m" << std::endl;
+		std::cout << "-> Test constructors:\n\n";
+
+		std::cout << "--> Create ClapTrap object using default constructor:\n";
+		ClapTrap no_name;
+		std::cout << "--> Created " << no_name << ".\n" << std::endl;
+
+		std::cout << "--> Create ClapTrap object using constructor with "
+			"name parameter:\n";
+		ClapTrap john("John");
+		std::cout << "--> Created " << john << ".\n" << std::endl;
+
+		std::cout << "--> Create ClapTrap object using copy constructor to "
+			"clone ClapTrap John:\n";
+		ClapTrap john_clone(john);
+		std::cout << "--> Created " << john_clone << ".\n" << std::endl;
+
+		std::cout << "\n-> Test fuctionality:\n";
+
+		std::cout << "\n--> Make John attack target Ted, take damage and "
+			"be repaired until energy points are exhausted:\n";
+
+		for (int i = 1; john.get_ep() > 0 && john.get_hp() > 0; ++i)
+		{
+			std::cout << "\n---> Round " << i << ":\n";
+			john.attack("Ted");
+			john.takeDamage(1);
+			john.beRepaired(1);
+			std::cout << "Status at the end of the round: " << john << "\n";
+		}
+
+		std::cout << "\n---> Make John attack target Ted, take damage and "
+			"be repaired again (no energy points left):\n";
+		john.attack("Ted");
+		john.takeDamage(1);
+		john.beRepaired(1);
+		std::cout << "Final status: " << john << "\n";
+
+		std::cout << "\n--> Make John's clone attack target Jack, take damage "
+			"and be repaired until hit points are exhausted:\n";
+
+		for (int i = 1; john_clone.get_ep() > 0 && john_clone.get_hp() > 0;
+			++i)
+		{
+			std::cout << "\n---> Round " << i << ":\n";
+			john_clone.attack("Jack");
+			john_clone.takeDamage(4);
+			john_clone.beRepaired(1);
+			std::cout << "Status at the end of the round: " << john_clone
+				<< "\n";
+		}
+
+		std::cout << "\n--> Make John's clone attack target Jack, take damage "
+			"and be repaired again (no hit points left):\n";
+		john_clone.attack("Jack");
+		john_clone.takeDamage(1);
+		john_clone.beRepaired(1);
+		std::cout << "Final status: " << john_clone << "\n";
+
+		std::cout << "\n-> End of ClapTrap tests, ClapTrap object destructors "
+			"should be called:\n\n";
 	}
-	std::cout << "\n\n### TESTING SCAVTRAP ###\n" << std::endl;
+
 	{
-		std::cout << "\033[34mConstructing\033[0m" << std::endl;
-		ScavTrap a;
-		ScavTrap b("Savage");
+		std::cout << "\n\nTest ScavTrap class:\n\n";
 
-		std::cout << "\033[34mTesting\033[0m" << std::endl;
-		a.attack("CloneTrap");
-		// for (int i = 0; i < 50; i++)
-		// 	a.attack("CloneTrap");
-		a.beRepaired(22);
-		a.takeDamage(21);
-		a.beRepaired(22);
-		a.guardGate();
-		a.guardGate();
-		b.attack("Savage-clone");
-		b.takeDamage(101);
-		b.takeDamage(15);
-		b.attack("ScavTrap-clone");
-		std::cout << "\033[34mDeconstructing\033[0m" << std::endl;
+		std::cout << "-> Test constructors:\n\n";
+
+		std::cout << "--> Create ScavTrap object using default constructor:\n";
+		ScavTrap no_name;
+		std::cout << "--> Created " << no_name << ".\n" << std::endl;
+
+		std::cout << "--> Create ScavTrap object using constructor"
+			" with name parameter:\n";
+		ScavTrap chris("Chris");
+		std::cout << "--> Created " << chris << ".\n" << std::endl;
+
+		std::cout << "--> Create ScavTrap object using copy constructor "
+			"to clone ScavTrap Chris:\n";
+		ScavTrap chris_clone(chris);
+		std::cout << "--> Created " << chris_clone << ".\n" << std::endl;
+
+		std::cout << "\n-> Test fuctionality:\n";
+
+		std::cout << "\n--> Make Chris attack target Logan, take damage, "
+			"be repaired and guard gate 5 times "
+			"until energy points are exhausted:\n";
+
+		for (int i = 1; chris.get_ep() > 0 && chris.get_hp() > 0; ++i)
+		{
+			std::cout << "\n---> Round " << i << ":\n";
+			chris.attack("Logan");
+			chris.takeDamage(2);
+			chris.beRepaired(1);
+			chris.guardGate();
+			chris.guardGate();
+			chris.guardGate();
+			chris.guardGate();
+			chris.guardGate();
+			std::cout << "Status at the end of the round: " << chris << "\n";
+		}
+
+		std::cout << "\n---> Make Chris attack target Logan, take damage, "
+			"be repaired and guard gate again (no energy points left):\n";
+		chris.attack("Logan");
+		chris.takeDamage(5);
+		chris.beRepaired(1);
+		chris.guardGate();
+		std::cout << "Final status: " << chris << "\n";
+
+		std::cout << "\n--> Make Chris's clone attack target Tony, take damage, "
+			"be repaired and guard gate until hit points are exhausted:\n";
+
+		for (int i = 1; chris_clone.get_ep() > 0 && chris_clone.get_hp() > 0;
+			++i)
+		{
+			std::cout << "\n---> Round " << i << ":\n";
+			chris_clone.attack("Tony");
+			chris_clone.takeDamage(20);
+			chris_clone.beRepaired(1);
+			chris_clone.guardGate();
+
+			std::cout << "Status at the end of the round: " << chris_clone
+				<< "\n";
+		}
+
+		std::cout << "\n--> Make Chris's clone attack target Tony, take damage, "
+			"be repaired and guard gate again (no hit points left):\n";
+		chris_clone.attack("Tony");
+		chris_clone.takeDamage(20);
+		chris_clone.beRepaired(1);
+		chris_clone.guardGate();
+		std::cout << "Final status: " << chris_clone << "\n";
+
+		std::cout << "\n-> End of ScavTrap tests, ScavTrap object destructors "
+			"should be called:\n\n";
 	}
-	std::cout << "\n\n### TESTING FRAGTRAP ###\n" << std::endl;
+
 	{
-		std::cout << "\033[34mConstructing\033[0m" << std::endl;
-		FragTrap a;
-		FragTrap b("Chadd");
+		std::cout << "Test FragTrap class:\n\n";
 
-		std::cout << "\033[34mTesting\033[0m" << std::endl;
-		a.highFivesGuys();
-		a.attack("some random dude");
-		a.takeDamage(101);
-		a.takeDamage(1);
-		a.attack("some random dude");
-		b.highFivesGuys();
-		// for(int i = 0; i < 101; i++)
-		// 	b.attack("FragTrap-clone");
-		std::cout << "\033[34mDeconstructing\033[0m" << std::endl;
+		std::cout << "-> Test constructors:\n\n";
+
+		std::cout << "--> Create FragTrap object using default constructor:\n";
+		FragTrap no_name;
+		std::cout << "--> Created " << no_name << ".\n" << std::endl;
+
+		std::cout << "--> Create FragTrap object using constructor"
+			" with name parameter:\n";
+		FragTrap luke("Luke");
+		std::cout << "--> Created " << luke << ".\n" << std::endl;
+
+		std::cout << "--> Create FragTrap object using copy constructor "
+			"to clone FragTrap Luke:\n";
+		FragTrap luke_clone(luke);
+		std::cout << "--> Created " << luke_clone << ".\n" << std::endl;
+
+		std::cout << "\n-> Test fuctionality:\n";
+
+		std::cout << "\n--> Make Luke attack target Tim, take damage, "
+			"be repaired and request high fives five times until "
+			"energy points are exhausted:\n";
+
+		for (int i = 1; luke.get_ep() > 0 && luke.get_hp() > 0; ++i)
+		{
+			std::cout << "\n---> Round " << i << ":\n";
+			luke.attack("Tim");
+			luke.takeDamage(8);
+			luke.beRepaired(10);
+			luke.highFivesGuys();
+			luke.highFivesGuys();
+			luke.highFivesGuys();
+			luke.highFivesGuys();
+			luke.highFivesGuys();
+			std::cout << "Status at the end of the round: " << luke << "\n";
+		}
+
+		std::cout << "\n---> Make Luke attack target Tim, take damage, "
+			"be repaired and request high fives again "
+			"(no energy points left):\n";
+		luke.attack("Tim");
+		luke.takeDamage(8);
+		luke.beRepaired(10);
+		luke.highFivesGuys();
+		std::cout << "Final status: " << luke << "\n";
+
+		std::cout << "\n--> Make Luke's clone attack target Mark, take damage, "
+			"be repaired and request high fives "
+			"until hit points are exhausted:\n";
+
+		for (int i = 1; luke_clone.get_ep() > 0 && luke_clone.get_hp() > 0;
+			++i)
+		{
+			std::cout << "\n---> Round " << i << ":\n";
+			luke_clone.attack("Mark");
+			luke_clone.takeDamage(15);
+			luke_clone.beRepaired(1);
+			luke_clone.highFivesGuys();
+			std::cout << "Status at the end of the round: " << luke_clone
+				<< "\n";
+		}
+
+		std::cout << "\n--> Make Luke's clone attack target Mark, take damage, "
+			"be repaired and request high fives "
+			"again (no hit points left):\n";
+		luke_clone.attack("Mark");
+		luke_clone.takeDamage(15);
+		luke_clone.beRepaired(1);
+		luke_clone.highFivesGuys();
+		std::cout << "Final status: " << luke_clone << "\n";
+
+		std::cout << "\n-> End of FragTrap tests, FragTrap object destructors "
+			"should be called:\n\n";
 	}
-	std::cout << "\n\n### TESTING DIAMONDTRAP ###\n" << std::endl;
+
 	{
-		std::cout << "\033[34mConstructing\033[0m" << std::endl;
-		DiamondTrap a;
-		DiamondTrap b("Giga Chadd");
-		DiamondTrap c(a);
+		std::cout << "\n\nTest DiamondTrap class:\n\n";
 
-		std::cout << "\033[34mTesting\033[0m" << std::endl;
-		a.whoAmI();
-		a.attack("some super random dude");
-		b.whoAmI();
-		b.attack("Chadd-clone");
-		c.whoAmI();
-		std::cout << "\033[34mDeconstructing\033[0m" << std::endl;
+		std::cout << "-> Test constructors:\n\n";
+
+		std::cout << "--> Create DiamondTrap object using default constructor:\n";
+		DiamondTrap no_name;
+		std::cout << "--> Created " << no_name << ".\n" << std::endl;
+
+		std::cout << "--> Create DiamondTrap object using constructor"
+			" with name parameter:\n";
+		DiamondTrap chris("Chris");
+		std::cout << "--> Created " << chris << ".\n" << std::endl;
+
+		std::cout << "--> Create DiamondTrap object using copy constructor "
+			"to clone DiamondTrap Chris:\n";
+		DiamondTrap chris_clone(chris);
+		std::cout << "--> Created " << chris_clone << ".\n" << std::endl;
+
+		std::cout << "\n-> Test fuctionality:\n";
+
+		std::cout << "\n--> Let DiamondTrap objects tell us who they are:\n";
+
+		std::cout << "\n--> Unnamed: ";
+		no_name.whoAmI();
+		std::cout << "\n--> Chris: ";
+		chris.whoAmI();
+		std::cout << "\n--> Chris' clone: ";
+		chris_clone.whoAmI();
+
+		std::cout << "\n--> Make Chris attack target Logan, take damage, "
+			"be repaired, request high fives 3 times and guard gate 3 times "
+			"until energy points are exhausted:\n";
+
+		for (int i = 1; chris.get_ep() > 0 && chris.get_hp() > 0; ++i)
+		{
+			std::cout << "\n---> Round " << i << ":\n";
+			chris.attack("Logan");
+			chris.takeDamage(2);
+			chris.beRepaired(1);
+			chris.highFivesGuys();
+			chris.highFivesGuys();
+			chris.highFivesGuys();
+			chris.guardGate();
+			chris.guardGate();
+			chris.guardGate();
+
+			std::cout << "Status at the end of the round: " << chris << "\n";
+		}
+
+		std::cout << "\n---> Make Chris attack target Logan, take damage, "
+			"be repaired, request high fives and guard gate again "
+			"(no energy points left):\n";
+		chris.attack("Logan");
+		chris.takeDamage(5);
+		chris.beRepaired(1);
+		chris.highFivesGuys();
+		chris.guardGate();
+		std::cout << "Final status: " << chris << "\n";
+
+		std::cout << "\n--> Make Chris's clone attack target Tony, take damage, "
+			"be repaired and guard gate until hit points are exhausted:\n";
+
+		for (int i = 1; chris_clone.get_ep() > 0 && chris_clone.get_hp() > 0;
+			++i)
+		{
+			std::cout << "\n---> Round " << i << ":\n";
+			chris_clone.attack("Tony");
+			chris_clone.takeDamage(20);
+			chris_clone.beRepaired(1);
+			chris_clone.highFivesGuys();
+			chris_clone.highFivesGuys();
+			chris_clone.highFivesGuys();
+			chris_clone.guardGate();
+			chris_clone.guardGate();
+			chris_clone.guardGate();
+
+			std::cout << "Status at the end of the round: " << chris_clone
+				<< "\n";
+		}
+
+		std::cout << "\n--> Make Chris's clone attack target Tony, take damage, "
+			"be repaired and guard gate again (no hit points left):\n";
+		chris_clone.attack("Tony");
+		chris_clone.takeDamage(20);
+		chris_clone.beRepaired(1);
+		chris_clone.highFivesGuys();
+		chris_clone.guardGate();
+		std::cout << "Final status: " << chris_clone << "\n";
+
+		std::cout << "\n-> End of DiamondTrap tests, DiamondTrap object destructors "
+			"should be called:\n\n";
 	}
-	return (0);
+
+	return 0;
 }
