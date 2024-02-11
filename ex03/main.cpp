@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:26:43 by gmachado          #+#    #+#             */
-/*   Updated: 2023/11/24 01:09:33 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/10 20:44:33 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,13 +242,13 @@ int main(void)
 
 		std::cout << "--> Create DiamondTrap object using constructor"
 			" with name parameter:\n";
-		DiamondTrap chris("Chris");
-		std::cout << "--> Created " << chris << ".\n" << std::endl;
+		DiamondTrap freddy("Freddy");
+		std::cout << "--> Created " << freddy << ".\n" << std::endl;
 
 		std::cout << "--> Create DiamondTrap object using copy constructor "
-			"to clone DiamondTrap Chris:\n";
-		DiamondTrap chris_clone(chris);
-		std::cout << "--> Created " << chris_clone << ".\n" << std::endl;
+			"to clone DiamondTrap Freddy:\n";
+		DiamondTrap freddy_clone(freddy);
+		std::cout << "--> Created " << freddy_clone << ".\n" << std::endl;
 
 		std::cout << "\n-> Test fuctionality:\n";
 
@@ -256,70 +256,70 @@ int main(void)
 
 		std::cout << "\n--> Unnamed: ";
 		no_name.whoAmI();
-		std::cout << "\n--> Chris: ";
-		chris.whoAmI();
-		std::cout << "\n--> Chris' clone: ";
-		chris_clone.whoAmI();
+		std::cout << "\n--> Freddy: ";
+		freddy.whoAmI();
+		std::cout << "\n--> Freddy's clone: ";
+		freddy_clone.whoAmI();
 
-		std::cout << "\n--> Make Chris attack target Logan, take damage, "
+		std::cout << "\n--> Make Freddy attack target Logan, take damage, "
 			"be repaired, request high fives 3 times and guard gate 3 times "
 			"until energy points are exhausted:\n";
 
-		for (int i = 1; chris.get_ep() > 0 && chris.get_hp() > 0; ++i)
+		for (int i = 1; freddy.get_ep() > 0 && freddy.get_hp() > 0; ++i)
 		{
 			std::cout << "\n---> Round " << i << ":\n";
-			chris.attack("Logan");
-			chris.takeDamage(2);
-			chris.beRepaired(1);
-			chris.highFivesGuys();
-			chris.highFivesGuys();
-			chris.highFivesGuys();
-			chris.guardGate();
-			chris.guardGate();
-			chris.guardGate();
+			freddy.attack("Logan");
+			freddy.takeDamage(2);
+			freddy.beRepaired(1);
+			freddy.highFivesGuys();
+			freddy.highFivesGuys();
+			freddy.highFivesGuys();
+			freddy.guardGate();
+			freddy.guardGate();
+			freddy.guardGate();
 
-			std::cout << "Status at the end of the round: " << chris << "\n";
+			std::cout << "Status at the end of the round: " << freddy << "\n";
 		}
 
-		std::cout << "\n---> Make Chris attack target Logan, take damage, "
+		std::cout << "\n---> Make Freddy attack target Logan, take damage, "
 			"be repaired, request high fives and guard gate again "
 			"(no energy points left):\n";
-		chris.attack("Logan");
-		chris.takeDamage(5);
-		chris.beRepaired(1);
-		chris.highFivesGuys();
-		chris.guardGate();
-		std::cout << "Final status: " << chris << "\n";
+		freddy.attack("Logan");
+		freddy.takeDamage(5);
+		freddy.beRepaired(1);
+		freddy.highFivesGuys();
+		freddy.guardGate();
+		std::cout << "Final status: " << freddy << "\n";
 
-		std::cout << "\n--> Make Chris's clone attack target Tony, take damage, "
+		std::cout << "\n--> Make Freddy's clone attack target Tony, take damage, "
 			"be repaired and guard gate until hit points are exhausted:\n";
 
-		for (int i = 1; chris_clone.get_ep() > 0 && chris_clone.get_hp() > 0;
+		for (int i = 1; freddy_clone.get_ep() > 0 && freddy_clone.get_hp() > 0;
 			++i)
 		{
 			std::cout << "\n---> Round " << i << ":\n";
-			chris_clone.attack("Tony");
-			chris_clone.takeDamage(20);
-			chris_clone.beRepaired(1);
-			chris_clone.highFivesGuys();
-			chris_clone.highFivesGuys();
-			chris_clone.highFivesGuys();
-			chris_clone.guardGate();
-			chris_clone.guardGate();
-			chris_clone.guardGate();
+			freddy_clone.attack("Tony");
+			freddy_clone.takeDamage(20);
+			freddy_clone.beRepaired(1);
+			freddy_clone.highFivesGuys();
+			freddy_clone.highFivesGuys();
+			freddy_clone.highFivesGuys();
+			freddy_clone.guardGate();
+			freddy_clone.guardGate();
+			freddy_clone.guardGate();
 
-			std::cout << "Status at the end of the round: " << chris_clone
+			std::cout << "Status at the end of the round: " << freddy_clone
 				<< "\n";
 		}
 
-		std::cout << "\n--> Make Chris's clone attack target Tony, take damage, "
+		std::cout << "\n--> Make Freddy's clone attack target Tony, take damage, "
 			"be repaired and guard gate again (no hit points left):\n";
-		chris_clone.attack("Tony");
-		chris_clone.takeDamage(20);
-		chris_clone.beRepaired(1);
-		chris_clone.highFivesGuys();
-		chris_clone.guardGate();
-		std::cout << "Final status: " << chris_clone << "\n";
+		freddy_clone.attack("Tony");
+		freddy_clone.takeDamage(20);
+		freddy_clone.beRepaired(1);
+		freddy_clone.highFivesGuys();
+		freddy_clone.guardGate();
+		std::cout << "Final status: " << freddy_clone << "\n";
 
 		std::cout << "\n-> End of DiamondTrap tests, DiamondTrap object destructors "
 			"should be called:\n\n";

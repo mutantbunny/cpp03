@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:56:13 by gmachado          #+#    #+#             */
-/*   Updated: 2023/11/23 03:34:56 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/10 20:40:08 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ DiamondTrap::DiamondTrap(std::string name): ClapTrap(name + "_clap_name",
 DiamondTrap::DiamondTrap(DiamondTrap &src): ClapTrap(src),
 	FragTrap(src), ScavTrap(src)
 {
-	DiamondTrap::m_name = src.get_name();
+	std::cout << src.get_name() << std::endl;
+	m_name = src.get_name();
+	ClapTrap::set_name(src.get_name() + "_clap_name");
 	std::cout << "DiamondTrap copy constructor called." << std::endl;
 }
 
@@ -41,19 +43,20 @@ DiamondTrap::~DiamondTrap(void)
 
 DiamondTrap &DiamondTrap::operator=(DiamondTrap &src)
 {
-	m_name = src.m_name;
-	ClapTrap::m_name = src.ClapTrap::m_name;
-	m_hp = src.m_hp;
-	m_ep = src.m_ep;
-	m_damage = src.m_damage;
+	ClapTrap::set_name(get_claptrap_name());
+	set_name(src.get_name());
+	set_hp(src.get_hp());
+	set_ep(src.get_hp());
+	set_damage(src.get_damage());
+
 	std::cout << "DiamondTrap assignment operator called." << std::endl;
 	return *this;
 }
 
 void DiamondTrap::whoAmI()
 {
-	std::cout << "My name is " << m_name << " and my ClapTrap name is "
-		<< ClapTrap::m_name << '.' << std::endl;
+	std::cout << "My name is " << get_name() << " and my ClapTrap name is "
+		<< get_claptrap_name() << '.' << std::endl;
 }
 
 void DiamondTrap::attack(const std::string& target)
@@ -63,13 +66,16 @@ void DiamondTrap::attack(const std::string& target)
 
 void DiamondTrap::set_name(std::string name)
 {
-	m_name = name;
-	ClapTrap::m_name = name + "_clap_name";
+	set_name(name);
+	ClapTrap::set_name(name + "_clap_name");
 }
 
 std::string DiamondTrap::get_name(void) { return m_name; }
 
-std::string DiamondTrap::get_claptrap_name(void) { return ClapTrap::m_name; }
+std::string DiamondTrap::get_claptrap_name(void)
+{
+	return ClapTrap::get_name();
+}
 
 std::ostream &operator<<(std::ostream &out, DiamondTrap &dt)
 {

@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:56:10 by gmachado          #+#    #+#             */
-/*   Updated: 2023/11/22 04:20:54 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/10 22:00:35 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ class DiamondTrap: public FragTrap, public ScavTrap
 		DiamondTrap &operator=(DiamondTrap &src);
 
 		void whoAmI();
-		void attack(const std::string& target);
+		virtual void attack(const std::string& target);
 
 		void set_name(std::string name);
-		std::string get_name(void);
+		virtual std::string get_name(void);
 		std::string get_claptrap_name(void);
 };
 
