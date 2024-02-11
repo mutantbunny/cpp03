@@ -6,29 +6,28 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:26:40 by gmachado          #+#    #+#             */
-/*   Updated: 2023/11/23 04:26:04 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/10 22:19:32 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap(void) : m_name("Unnamed"), m_hp(ClapTrap::default_hp),
-	m_ep(ClapTrap::default_ep), m_damage(ClapTrap::default_damage),
-	m_default_hp(ClapTrap::default_hp)
+	m_ep(ClapTrap::default_ep), m_damage(ClapTrap::default_damage)
 {
 	std::cout << "ClapTrap default constructor called." << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : m_name(name),
 	m_hp(ClapTrap::default_hp), m_ep(ClapTrap::default_ep),
-	m_damage(ClapTrap::default_damage), m_default_hp(ClapTrap::default_hp)
+	m_damage(ClapTrap::default_damage)
 {
 	std::cout << "ClapTrap constructor with name parameter called."
 		<< std::endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap &src): m_name(src.m_name), m_hp(src.m_hp),
-	m_ep(src.m_ep), m_damage(src.m_damage), m_default_hp(src.m_default_hp)
+	m_ep(src.m_ep), m_damage(src.m_damage)
 {
 	std::cout << "ClapTrap copy constructor called." << std::endl;
 }
@@ -88,7 +87,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (m_hp == m_default_hp)
+	if (m_hp == ClapTrap::default_hp)
 	{
 		std::cout << "ClapTrap " << m_name << " can't be repaired. "
 			"Already at full hit points!" << std::endl;
@@ -109,8 +108,8 @@ void ClapTrap::beRepaired(unsigned int amount)
 		return;
 	}
 
-	if (m_hp + amount > m_default_hp)
-		amount = m_default_hp - m_hp;
+	if (m_hp + amount > ClapTrap::default_hp)
+		amount = ClapTrap::default_hp - m_hp;
 
 	std::cout << "ClapTrap " << m_name << " is repaired, recovering "
 		<< amount << " points of damage!" << std::endl;

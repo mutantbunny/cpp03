@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 04:17:31 by gmachado          #+#    #+#             */
-/*   Updated: 2023/11/23 03:32:06 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/10 22:13:01 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class ScavTrap : public ClapTrap
 
 		ScavTrap &operator=(ScavTrap &src);
 
+		virtual void attack(const std::string& target);
 		void guardGate();
 };
 

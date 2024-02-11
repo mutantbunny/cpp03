@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:26:37 by gmachado          #+#    #+#             */
-/*   Updated: 2023/11/23 03:28:09 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/10 22:17:51 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ class ClapTrap
 		unsigned int m_hp;
 		unsigned int m_ep;
 		unsigned int m_damage;
-
-		const unsigned int m_default_hp;
 
 	public:
 		ClapTrap(void);

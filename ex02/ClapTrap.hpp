@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:26:37 by gmachado          #+#    #+#             */
-/*   Updated: 2023/11/23 03:26:28 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/10 22:09:11 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,14 @@ class ClapTrap
 		static const unsigned int default_hp = 10;
 		static const unsigned int default_ep = 10;
 		static const unsigned int default_damage = 0;
+		ClapTrap(std::string name, int hp, int ep, int damage);
 
+	private:
 		std::string m_name;
 		unsigned int m_hp;
 		unsigned int m_ep;
 		unsigned int m_damage;
-
-		const unsigned int m_default_hp;
-
-		ClapTrap(std::string name, int hp, int ep, int damage);
+		unsigned int m_max_hp;
 
 	public:
 		ClapTrap(void);
@@ -40,7 +39,7 @@ class ClapTrap
 
 		ClapTrap &operator=(ClapTrap &src);
 
-		void attack(const std::string& target);
+		virtual void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 
@@ -55,6 +54,9 @@ class ClapTrap
 
 		void set_damage(unsigned int damage);
 		unsigned int get_damage(void);
+
+		void set_max_hp(unsigned int hp);
+		unsigned int get_max_hp(void);
 };
 
 std::ostream &operator<<(std::ostream &out, ClapTrap &ct);
