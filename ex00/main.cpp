@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:26:43 by gmachado          #+#    #+#             */
-/*   Updated: 2023/11/24 00:10:06 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/20 22:45:22 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int main(void)
 	std::cout << "Final status: " << john_clone << "\n";
 
 	std::cout << "\n-> End of ClapTrap tests, ClapTrap object destructors "
-		"should be called:\n\n";
+		"should be called:\n";
 
 	return 0;
 }

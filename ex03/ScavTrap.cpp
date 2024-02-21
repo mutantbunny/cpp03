@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 04:17:37 by gmachado          #+#    #+#             */
-/*   Updated: 2024/02/10 21:54:41 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/20 22:44:30 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,15 @@ ScavTrap::~ScavTrap(void)
 
 ScavTrap &ScavTrap::operator=(ScavTrap &src)
 {
+	std::cout << "ScavTrap assignment operator called." << std::endl;
+
+	if (this == &src)
+		return *this;
+
 	set_name(src.get_name());
 	set_hp(src.get_hp());
 	set_ep(src.get_hp());
 	set_damage(src.get_damage());
-
-	std::cout << "ScavTrap assignment operator called." << std::endl;
 
 	return *this;
 }

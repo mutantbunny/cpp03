@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:26:40 by gmachado          #+#    #+#             */
-/*   Updated: 2024/02/10 22:19:32 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/20 22:36:21 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,16 @@ ClapTrap::~ClapTrap(void)
 
 ClapTrap &ClapTrap::operator=(ClapTrap &src)
 {
+	std::cout << "ClapTrap assignment operator called." << std::endl;
+
+	if (this == &src)
+		return *this;
+
 	m_name = src.m_name;
 	m_hp = src.m_hp;
 	m_ep = src.m_ep;
 	m_damage = src.m_damage;
-	std::cout << "ClapTrap assignment operator called." << std::endl;
+
 	return *this;
 }
 

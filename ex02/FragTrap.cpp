@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 04:17:37 by gmachado          #+#    #+#             */
-/*   Updated: 2024/02/10 21:58:40 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/20 22:42:51 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,15 @@ FragTrap::~FragTrap(void)
 
 FragTrap &FragTrap::operator=(FragTrap &src)
 {
+	std::cout << "FragTrap assignment operator called." << std::endl;
+
+	if (this == &src)
+		return *this;
+
 	set_name(src.get_name());
 	set_hp(src.get_hp());
 	set_ep(src.get_hp());
 	set_damage(src.get_damage());
-
-	std::cout << "FragTrap assignment operator called." << std::endl;
 
 	return *this;
 }
@@ -87,8 +90,8 @@ void FragTrap::highFivesGuys(void)
 		return;
 	}
 
-	std::cout << "FragTrap " << get_name() << " says: \"Gimme a High Five, guys!!!\"."
-		<< std::endl;
+	std::cout << "FragTrap " << get_name()
+		<< " says: \"Gimme a High Five, guys!!!\"." << std::endl;
 	set_ep(get_ep() - 1);
 }
 

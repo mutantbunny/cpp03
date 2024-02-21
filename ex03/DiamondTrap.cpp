@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:56:13 by gmachado          #+#    #+#             */
-/*   Updated: 2024/02/10 20:40:08 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/20 22:43:44 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,17 @@ DiamondTrap::~DiamondTrap(void)
 
 DiamondTrap &DiamondTrap::operator=(DiamondTrap &src)
 {
+	std::cout << "DiamondTrap assignment operator called." << std::endl;
+
+	if (this == &src)
+		return *this;
+
 	ClapTrap::set_name(get_claptrap_name());
 	set_name(src.get_name());
 	set_hp(src.get_hp());
 	set_ep(src.get_hp());
 	set_damage(src.get_damage());
 
-	std::cout << "DiamondTrap assignment operator called." << std::endl;
 	return *this;
 }
 
