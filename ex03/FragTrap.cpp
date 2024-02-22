@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 04:17:37 by gmachado          #+#    #+#             */
-/*   Updated: 2024/02/20 22:44:08 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/21 21:52:39 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ FragTrap::FragTrap(std::string name): ClapTrap(name, FragTrap::default_hp,
 		<< std::endl;
 }
 
-FragTrap::FragTrap(FragTrap &src): ClapTrap(src.get_name(), src.get_hp(),
-	src.get_ep(), src.get_damage())
+FragTrap::FragTrap(FragTrap &src)
 {
 	std::cout << "FragTrap copy constructor called." << std::endl;
+	*this = src;
 }
 
 FragTrap::~FragTrap(void)
@@ -44,24 +44,21 @@ FragTrap &FragTrap::operator=(FragTrap &src)
 	if (this == &src)
 		return *this;
 
-	set_name(src.get_name());
-	set_hp(src.get_hp());
-	set_ep(src.get_hp());
-	set_damage(src.get_damage());
+	ClapTrap::operator=(src);
 
 	return *this;
 }
 
 void FragTrap::attack(const std::string& target)
 {
-	if (get_hp() == 0)
+	if (m_hp == 0)
 	{
 		std::cout << "FragTrap " << get_name() << " can't attack. "
 			"No hit points left!" << std::endl;
 		return;
 	}
 
-	if (get_ep() == 0)
+	if (m_ep == 0)
 	{
 		std::cout << "FragTrap " << get_name() << " can't attack. "
 			"No energy points left!" << std::endl;
@@ -69,30 +66,29 @@ void FragTrap::attack(const std::string& target)
 	}
 
 	std::cout << "FragTrap " << get_name() << " attacks " << target
-		<< ", causing " << get_damage() << " points of damage!" << std::endl;
-
-	set_ep(get_ep() - 1);
+		<< ", causing " << m_damage << " points of damage!" << std::endl;
+	--m_ep;
 }
 
 void FragTrap::highFivesGuys(void)
 {
-	if (get_hp() == 0)
+	if (m_hp == 0)
 	{
 		std::cout << "FragTrap " << get_name() << " can't request high fives. "
 			"No hit points left!" << std::endl;
 		return;
 	}
 
-	if (get_ep() == 0)
+	if (m_ep == 0)
 	{
 		std::cout << "FragTrap " << get_name() << " can't request high fives. "
 			"No energy points left!" << std::endl;
 		return;
 	}
 
-	std::cout << "FragTrap " << get_name() << " says: \"Gimme a High Five, guys!!!\"."
-		<< std::endl;
-	set_ep(get_ep() - 1);
+	std::cout << "FragTrap " << get_name()
+		<< " says: \"Gimme a High Five, guys!!!\"." << std::endl;
+	--m_ep;
 }
 
 std::ostream &operator<<(std::ostream &out, FragTrap &st)

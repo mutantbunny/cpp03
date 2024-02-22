@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:56:10 by gmachado          #+#    #+#             */
-/*   Updated: 2024/02/10 22:00:35 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/21 21:34:49 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ class DiamondTrap: public FragTrap, public ScavTrap
 {
 	private:
 		std::string m_name;
+		void set_name(std::string name);
 
 	public:
 		DiamondTrap(void);
@@ -33,7 +34,7 @@ class DiamondTrap: public FragTrap, public ScavTrap
 		void whoAmI();
 		virtual void attack(const std::string& target);
 
-		void set_name(std::string name);
+
 		virtual std::string get_name(void);
 		std::string get_claptrap_name(void);
 };

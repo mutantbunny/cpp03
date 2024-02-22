@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:26:40 by gmachado          #+#    #+#             */
-/*   Updated: 2024/02/20 22:36:21 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/21 21:55:59 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ ClapTrap::ClapTrap(std::string name) : m_name(name),
 		<< std::endl;
 }
 
-ClapTrap::ClapTrap(ClapTrap &src): m_name(src.m_name), m_hp(src.m_hp),
-	m_ep(src.m_ep), m_damage(src.m_damage)
+ClapTrap::ClapTrap(ClapTrap &src)
 {
 	std::cout << "ClapTrap copy constructor called." << std::endl;
+	*this = src;
 }
 
 ClapTrap::~ClapTrap(void)
@@ -122,19 +122,11 @@ void ClapTrap::beRepaired(unsigned int amount)
 	--m_ep;
 }
 
-void ClapTrap::set_name(std::string name) { m_name = name; }
-
 std::string ClapTrap::get_name(void) { return m_name; }
-
-void ClapTrap::set_hp(unsigned int hp) { m_hp = hp; }
 
 unsigned int ClapTrap::get_hp(void) { return m_hp; }
 
-void ClapTrap::set_ep(unsigned int ep) { m_ep = ep; }
-
 unsigned int ClapTrap::get_ep(void) { return m_ep; }
-
-void ClapTrap::set_damage(unsigned int damage) { m_damage = damage; }
 
 unsigned int ClapTrap::get_damage(void) { return m_damage; }
 

@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:26:40 by gmachado          #+#    #+#             */
-/*   Updated: 2024/02/20 22:36:56 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/21 22:05:18 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ ClapTrap::ClapTrap(std::string name, int hp, int ep, int damage) :
 	std::cout << "ClapTrap protected constructor called." << std::endl;
 }
 
-ClapTrap::ClapTrap(ClapTrap &src): m_name(src.get_name()), m_hp(src.get_hp()),
-	m_ep(src.get_ep()), m_damage(src.get_damage()), m_max_hp(src.get_max_hp())
+ClapTrap::ClapTrap(ClapTrap &src)
 {
 	std::cout << "ClapTrap copy constructor called." << std::endl;
+	*this = src;
 }
 
 ClapTrap::~ClapTrap(void)
@@ -51,104 +51,95 @@ ClapTrap &ClapTrap::operator=(ClapTrap &src)
 	if (this == &src)
 		return *this;
 
-	set_name(src.get_name());
-	set_hp(src.get_hp());
-	set_ep(src.get_hp());
-	set_damage(src.get_damage());
+	m_name = src.get_name();
+	m_hp = src.get_hp();
+	m_ep = src.get_ep();
+	m_damage = src.get_damage();
+	m_max_hp = src.get_max_hp();
 
 	return *this;
 }
 
 void ClapTrap::attack(const std::string& target)
 {
-	if (get_hp() == 0)
+	if (m_hp == 0)
 	{
-		std::cout << "ClapTrap " << get_name() << " can't attack. "
+		std::cout << "ClapTrap " << m_name << " can't attack. "
 			"No hit points left!" << std::endl;
 		return;
 	}
 
-	if (get_ep() == 0)
+	if (m_ep == 0)
 	{
-		std::cout << "ClapTrap " << get_name() << " can't attack. "
+		std::cout << "ClapTrap " << m_name << " can't attack. "
 			"No energy points left!" << std::endl;
 		return;
 	}
 
-	std::cout << "ClapTrap " << get_name() << " attacks " << target
-		<< ", causing " << get_damage() << " points of damage!" << std::endl;
+	std::cout << "ClapTrap " << m_name << " attacks " << target
+		<< ", causing " << m_damage << " points of damage!" << std::endl;
 
-	set_ep(get_ep() - 1);
+	--m_ep;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	if (get_hp() == 0)
+	if (m_hp == 0)
 	{
-		std::cout << "ClapTrap " << get_name() << " can't take any more damage. "
+		std::cout << "ClapTrap " << m_name << " can't take any more damage. "
 			"No hit points left!" << std::endl;
 		return;
 	}
 
-	if (amount > get_hp())
-		amount = get_hp();
+	if (amount > m_hp)
+		amount = m_hp;
 
-	std::cout << "ClapTrap " << get_name() << " takes " << amount
+	std::cout << "ClapTrap " << m_name << " takes " << amount
 		<< " points of damage!" << std::endl;
 
-	set_hp(get_hp() - amount);
+	m_hp -= amount;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (get_hp() == get_max_hp())
+	if (m_hp == m_max_hp)
 	{
-		std::cout << "ClapTrap " << get_name() << " can't be repaired. "
+		std::cout << "ClapTrap " << m_name << " can't be repaired. "
 			"Already at full hit points!" << std::endl;
 		return;
 	}
 
-	if (get_hp() == 0)
+	if (m_hp == 0)
 	{
-		std::cout << "ClapTrap " << get_name() << " can't be repaired. "
+		std::cout << "ClapTrap " << m_name << " can't be repaired. "
 			"No hit points left!" << std::endl;
 		return;
 	}
 
-	if (get_ep() == 0)
+	if (m_ep == 0)
 	{
-		std::cout << "ClapTrap " << get_name() << " can't be repaired. "
+		std::cout << "ClapTrap " << m_name << " can't be repaired. "
 			"No energy points left!" << std::endl;
 		return;
 	}
 
-	if (get_hp() + amount > get_max_hp())
-		amount = get_max_hp() - get_hp();
+	if (m_hp + amount > m_max_hp)
+		amount = m_max_hp - m_hp;
 
-	std::cout << "ClapTrap " << get_name() << " is repaired, recovering "
+	std::cout << "ClapTrap " << m_name << " is repaired, recovering "
 		<< amount << " points of damage!" << std::endl;
 
-	set_hp(get_hp() + amount);
-	set_ep(get_ep() - 1);
+	m_hp += amount;
+	--m_ep;
 }
 
-void ClapTrap::set_name(std::string name) { m_name = name; }
-
-std::string ClapTrap::get_name(void) { return ClapTrap::m_name; }
-
-void ClapTrap::set_hp(unsigned int hp) { m_hp = hp; }
+std::string ClapTrap::get_name(void) { return m_name; }
 
 unsigned int ClapTrap::get_hp(void) { return m_hp; }
 
-void ClapTrap::set_ep(unsigned int ep) { m_ep = ep; }
-
 unsigned int ClapTrap::get_ep(void) { return m_ep; }
 
-void ClapTrap::set_damage(unsigned int damage) { m_damage = damage; }
-
 unsigned int ClapTrap::get_damage(void) { return m_damage; }
-
-void ClapTrap::set_max_hp(unsigned int hp) { m_max_hp = hp; }
 
 unsigned int ClapTrap::get_max_hp(void) { return m_max_hp; }
 

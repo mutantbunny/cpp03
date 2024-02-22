@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:26:37 by gmachado          #+#    #+#             */
-/*   Updated: 2024/02/10 22:17:51 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/21 19:25:33 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,9 @@ class ClapTrap
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 
-		void set_name(std::string name);
 		std::string get_name(void);
-
-		void set_hp(unsigned int hp);
 		unsigned int get_hp(void);
-
-		void set_ep(unsigned int ep);
 		unsigned int get_ep(void);
-
-		void set_damage(unsigned int damage);
 		unsigned int get_damage(void);
 };
 

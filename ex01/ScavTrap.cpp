@@ -6,28 +6,27 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 04:17:37 by gmachado          #+#    #+#             */
-/*   Updated: 2024/02/20 22:41:30 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/21 22:39:19 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ScavTrap.hpp"
 
 
-ScavTrap::ScavTrap(void): ClapTrap("Unnamed", ScavTrap::default_hp,
+ScavTrap::ScavTrap(void) : ClapTrap("Unnamed", ScavTrap::default_hp,
 	ScavTrap::default_ep, ScavTrap::default_damage)
 {
 	std::cout << "ScavTrap default constructor called." << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name): ClapTrap(name, ScavTrap::default_hp,
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name, ScavTrap::default_hp,
 	ScavTrap::default_ep, ScavTrap::default_damage)
 {
 	std::cout << "ScavTrap constructor with name parameter called."
 		<< std::endl;
 }
 
-ScavTrap::ScavTrap(ScavTrap &src): ClapTrap(src.get_name(), src.get_hp(),
-	src.get_ep(), src.get_damage())
+ScavTrap::ScavTrap(ScavTrap &src) : ClapTrap(src)
 {
 	std::cout << "ScavTrap copy constructor called." << std::endl;
 }
@@ -44,55 +43,52 @@ ScavTrap &ScavTrap::operator=(ScavTrap &src)
 	if (this == &src)
 		return *this;
 
-	set_name(src.get_name());
-	set_hp(src.get_hp());
-	set_ep(src.get_hp());
-	set_damage(src.get_damage());
+	ClapTrap::operator=(src);
 
 	return *this;
 }
 
 void ScavTrap::attack(const std::string& target)
 {
-	if (get_hp() == 0)
+	if (m_hp == 0)
 	{
-		std::cout << "ScavTrap " << get_name() << " can't attack. "
+		std::cout << "ScavTrap " << m_name << " can't attack. "
 			"No hit points left!" << std::endl;
 		return;
 	}
 
-	if (get_ep() == 0)
+	if (m_ep == 0)
 	{
-		std::cout << "ScavTrap " << get_name() << " can't attack. "
+		std::cout << "ScavTrap " << m_name << " can't attack. "
 			"No energy points left!" << std::endl;
 		return;
 	}
 
-	std::cout << "ScavTrap " << get_name() << " attacks " << target
-		<< ", causing " << get_damage() << " points of damage!" << std::endl;
+	std::cout << "ScavTrap " << m_name << " attacks " << target
+		<< ", causing " << m_damage << " points of damage!" << std::endl;
 
-	set_ep(get_ep() - 1);
+	--m_ep;
 }
 
 void ScavTrap::guardGate()
 {
-	if (get_hp() == 0)
+	if (m_hp == 0)
 	{
-		std::cout << "ScavTrap " << get_name() << " can't guard the gate. "
+		std::cout << "ScavTrap " << m_name << " can't guard the gate. "
 			"No hit points left!" << std::endl;
 		return;
 	}
 
-	if (get_ep() == 0)
+	if (m_ep == 0)
 	{
-		std::cout << "ScavTrap " << get_name() << " can't guard the gate. "
+		std::cout << "ScavTrap " << m_name << " can't guard the gate. "
 			"No energy points left!" << std::endl;
 		return;
 	}
 
-	std::cout << "ScavTrap " << get_name() << " is now in Gate keeper mode."
+	std::cout << "ScavTrap " << m_name << " is now in Gate keeper mode."
 		<< std::endl;
-	set_ep(get_ep() - 1);
+	--m_ep;
 }
 
 std::ostream &operator<<(std::ostream &out, ScavTrap &st)

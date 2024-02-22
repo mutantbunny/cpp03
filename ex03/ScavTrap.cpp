@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 04:17:37 by gmachado          #+#    #+#             */
-/*   Updated: 2024/02/20 22:44:30 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/21 21:50:45 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ ScavTrap::ScavTrap(std::string name): ClapTrap(name, ScavTrap::default_hp,
 		<< std::endl;
 }
 
-ScavTrap::ScavTrap(ScavTrap &src): ClapTrap(src.get_name(), src.get_hp(),
-	src.get_ep(), src.get_damage())
+ScavTrap::ScavTrap(ScavTrap &src)
 {
 	std::cout << "ScavTrap copy constructor called." << std::endl;
+	*this = src;
 }
 
 ScavTrap::~ScavTrap(void)
@@ -44,24 +44,21 @@ ScavTrap &ScavTrap::operator=(ScavTrap &src)
 	if (this == &src)
 		return *this;
 
-	set_name(src.get_name());
-	set_hp(src.get_hp());
-	set_ep(src.get_hp());
-	set_damage(src.get_damage());
+	ClapTrap::operator=(src);
 
 	return *this;
 }
 
 void ScavTrap::attack(const std::string& target)
 {
-	if (get_hp() == 0)
+	if (m_hp == 0)
 	{
 		std::cout << "ScavTrap " << get_name() << " can't attack. "
 			"No hit points left!" << std::endl;
 		return;
 	}
 
-	if (get_ep() == 0)
+	if (m_ep == 0)
 	{
 		std::cout << "ScavTrap " << get_name() << " can't attack. "
 			"No energy points left!" << std::endl;
@@ -69,21 +66,21 @@ void ScavTrap::attack(const std::string& target)
 	}
 
 	std::cout << "ScavTrap " << get_name() << " attacks " << target
-		<< ", causing " << get_damage() << " points of damage!" << std::endl;
+		<< ", causing " << m_damage << " points of damage!" << std::endl;
 
-	set_ep(get_ep() - 1);
+	--m_ep;
 }
 
 void ScavTrap::guardGate()
 {
-	if (get_hp() == 0)
+	if (m_hp == 0)
 	{
 		std::cout << "ScavTrap " << get_name() << " can't guard the gate. "
 			"No hit points left!" << std::endl;
 		return;
 	}
 
-	if (get_ep() == 0)
+	if (m_ep == 0)
 	{
 		std::cout << "ScavTrap " << get_name() << " can't guard the gate. "
 			"No energy points left!" << std::endl;
@@ -92,7 +89,7 @@ void ScavTrap::guardGate()
 
 	std::cout << "ScavTrap " << get_name() << " is now in Gate keeper mode."
 		<< std::endl;
-	set_ep(get_ep() - 1);
+	--m_ep;
 }
 
 std::ostream &operator<<(std::ostream &out, ScavTrap &st)
