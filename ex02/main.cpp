@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:26:43 by gmachado          #+#    #+#             */
-/*   Updated: 2024/02/20 22:47:24 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/21 22:52:06 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,17 @@ int main(void)
 		std::cout << "--> Created " << john << ".\n" << std::endl;
 
 		std::cout << "--> Create ClapTrap object using copy constructor to "
-			"clone ClapTrap John:\n";
-		ClapTrap john_clone(john);
-		std::cout << "--> Created " << john_clone << ".\n" << std::endl;
+		"clone ClapTrap Unnamed:\n";
+		ClapTrap john_clone(no_name);
+		std::cout << "--> Created " << john_clone << "." << std::endl;
 
-		std::cout << "\n-> Test fuctionality:\n";
+		std::cout << "\n--> Use assignment operator to copy attributes from "
+			"ClapTrap John:\n";
+		john_clone = john;
+		std::cout << "--> Status of (now) John's clone: " << john_clone << "."
+			<< std::endl;
+
+		std::cout << "\n-> Test functionality:\n";
 
 		std::cout << "\n--> Make John attack target Ted, take damage and "
 			"be repaired until energy points are exhausted:\n";
@@ -80,7 +86,7 @@ int main(void)
 	}
 
 	{
-		std::cout << "Test FragTrap class:\n\n";
+		std::cout << "\nTest FragTrap class:\n\n";
 
 		std::cout << "-> Test constructors:\n\n";
 
@@ -93,12 +99,18 @@ int main(void)
 		FragTrap luke("Luke");
 		std::cout << "--> Created " << luke << ".\n" << std::endl;
 
-		std::cout << "--> Create FragTrap object using copy constructor "
-			"to clone FragTrap Luke:\n";
-		FragTrap luke_clone(luke);
-		std::cout << "--> Created " << luke_clone << ".\n" << std::endl;
+		std::cout << "--> Create FragTrap object using copy constructor to "
+		"clone FragTrap Unnamed:\n";
+		FragTrap luke_clone(no_name);
+		std::cout << "--> Created " << luke_clone << "." << std::endl;
 
-		std::cout << "\n-> Test fuctionality:\n";
+		std::cout << "\n--> Use assignment operator to copy attributes from "
+			"FragTrap Luke:\n";
+		luke_clone = luke;
+		std::cout << "--> Status of (now) Luke's clone: " << luke_clone << "."
+			<< std::endl;
+
+		std::cout << "\n-> Test functionality:\n";
 
 		std::cout << "\n--> Make Luke attack target Tim, take damage, "
 			"be repaired and request high fives five times until "

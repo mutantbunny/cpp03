@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:26:43 by gmachado          #+#    #+#             */
-/*   Updated: 2024/02/20 22:46:17 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/21 22:59:47 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,17 @@ int main(void)
 		std::cout << "--> Created " << john << ".\n" << std::endl;
 
 		std::cout << "--> Create ClapTrap object using copy constructor to "
-			"clone ClapTrap John:\n";
-		ClapTrap john_clone(john);
-		std::cout << "--> Created " << john_clone << ".\n" << std::endl;
+		"clone ClapTrap Unnamed:\n";
+		ClapTrap john_clone(no_name);
+		std::cout << "--> Created " << john_clone << "." << std::endl;
 
-		std::cout << "\n-> Test fuctionality:\n";
+		std::cout << "\n--> Use assignment operator to copy attributes from "
+			"ClapTrap John:\n";
+		john_clone = john;
+		std::cout << "--> Status of (now) John's clone: " << john_clone << "."
+			<< std::endl;
+
+		std::cout << "\n-> Test functionality:\n";
 
 		std::cout << "\n--> Make John attack target Ted, take damage and "
 			"be repaired until energy points are exhausted:\n";
@@ -65,7 +71,7 @@ int main(void)
 			john_clone.takeDamage(4);
 			john_clone.beRepaired(1);
 			std::cout << "Status at the end of the round: " << john_clone
-				<< "\n";
+				<< ".\n";
 		}
 
 		std::cout << "\n--> Make John's clone attack target Jack, take damage "
@@ -80,7 +86,7 @@ int main(void)
 	}
 
 	{
-		std::cout << "\n\nTest ScavTrap class:\n\n";
+		std::cout << "\nTest ScavTrap class:\n\n";
 
 		std::cout << "-> Test constructors:\n\n";
 
@@ -93,12 +99,18 @@ int main(void)
 		ScavTrap bill("Bill");
 		std::cout << "--> Created " << bill << ".\n" << std::endl;
 
-		std::cout << "--> Create ScavTrap object using copy constructor "
-			"to clone ScavTrap Bill:\n";
-		ScavTrap bill_clone(bill);
-		std::cout << "--> Created " << bill_clone << ".\n" << std::endl;
+		std::cout << "--> Create ScavTrap object using copy constructor to "
+		"clone ScavTrap Unnamed:\n";
+		ScavTrap bill_clone(no_name);
+		std::cout << "--> Created " << bill_clone << "." << std::endl;
 
-		std::cout << "\n-> Test fuctionality:\n";
+		std::cout << "\n--> Use assignment operator to copy attributes from "
+			"ScavTrap Bill:\n";
+		bill_clone = bill;
+		std::cout << "--> Status of (now) Bill's clone: " << bill_clone << "."
+			<< std::endl;
+
+		std::cout << "\n-> Test functionality:\n";
 
 		std::cout << "\n--> Make Bill attack target Phil, take damage, "
 			"be repaired and guard gate 5 times "
@@ -139,7 +151,7 @@ int main(void)
 			bill_clone.guardGate();
 
 			std::cout << "Status at the end of the round: " << bill_clone
-				<< "\n";
+				<< ".\n";
 		}
 
 		std::cout << "\n--> Make Bill's clone attack target Bob, take damage, "
