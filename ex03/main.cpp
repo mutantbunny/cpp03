@@ -6,7 +6,7 @@
 /*   By: gmachado <gmachado@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 22:26:43 by gmachado          #+#    #+#             */
-/*   Updated: 2024/02/21 23:04:05 by gmachado         ###   ########.fr       */
+/*   Updated: 2024/02/21 23:30:53 by gmachado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,9 @@ int main(void)
 		chris.guardGate();
 		std::cout << "Final status: " << chris << "\n";
 
-		std::cout << "\n--> Make Chris's clone attack target Tony, take damage, "
-			"be repaired and guard gate until hit points are exhausted:\n";
+		std::cout << "\n--> Make Chris's clone attack target Tony, take "
+			"damage, be repaired and guard gate until hit points are "
+			"exhausted:\n";
 
 		for (int i = 1; chris_clone.get_ep() > 0 && chris_clone.get_hp() > 0;
 			++i)
@@ -155,8 +156,8 @@ int main(void)
 				<< "\n";
 		}
 
-		std::cout << "\n--> Make Chris's clone attack target Tony, take damage, "
-			"be repaired and guard gate again (no hit points left):\n";
+		std::cout << "\n--> Make Chris's clone attack target Tony, take "
+			"damage, be repaired and guard gate again (no hit points left):\n";
 		chris_clone.attack("Tony");
 		chris_clone.takeDamage(20);
 		chris_clone.beRepaired(1);
@@ -255,7 +256,8 @@ int main(void)
 
 		std::cout << "-> Test constructors:\n\n";
 
-		std::cout << "--> Create DiamondTrap object using default constructor:\n";
+		std::cout << "--> Create DiamondTrap object using default "
+			"constructor:\n";
 		DiamondTrap no_name;
 		std::cout << "--> Created " << no_name << ".\n" << std::endl;
 
@@ -316,8 +318,9 @@ int main(void)
 		freddy.guardGate();
 		std::cout << "Final status: " << freddy << "\n";
 
-		std::cout << "\n--> Make Freddy's clone attack target Tony, take damage, "
-			"be repaired and guard gate until hit points are exhausted:\n";
+		std::cout << "\n--> Make Freddy's clone attack target Tony, "
+			"take damage, be repaired and guard gate until hit points "
+			"are exhausted:\n";
 
 		for (int i = 1; freddy_clone.get_ep() > 0 && freddy_clone.get_hp() > 0;
 			++i)
@@ -337,8 +340,8 @@ int main(void)
 				<< "\n";
 		}
 
-		std::cout << "\n--> Make Freddy's clone attack target Tony, take damage, "
-			"be repaired and guard gate again (no hit points left):\n";
+		std::cout << "\n--> Make Freddy's clone attack target Tony, take "
+			"damage, be repaired and guard gate again (no hit points left):\n";
 		freddy_clone.attack("Tony");
 		freddy_clone.takeDamage(20);
 		freddy_clone.beRepaired(1);
@@ -346,8 +349,8 @@ int main(void)
 		freddy_clone.guardGate();
 		std::cout << "Final status: " << freddy_clone << "\n";
 
-		std::cout << "\n-> End of DiamondTrap tests, DiamondTrap object destructors "
-			"should be called:\n";
+		std::cout << "\n-> End of DiamondTrap tests, DiamondTrap object "
+			"destructors should be called:\n";
 	}
 
 	return 0;
